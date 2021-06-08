@@ -1,0 +1,15 @@
+// dp表示现金数
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int dp0 = 0, dp1 = -prices[0];
+        int n = prices.length;
+        for(int i=1; i<n; i++){
+            int newdp0 = Math.max(dp0,dp1+prices[i]);
+            int newdp1 = Math.max(dp1,-prices[i]);
+            dp0 = newdp0;
+            dp1 = newdp1;
+        }
+        return dp0;
+    }
+}
