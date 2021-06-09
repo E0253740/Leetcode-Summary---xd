@@ -1,0 +1,22 @@
+70. 爬楼梯
+https://leetcode-cn.com/problems/climbing-stairs/
+
+// Java
+class Solution {
+    public int climbStairs(int n) {
+        int p = 0, q = 0, r = 1;
+        for(int i = 1; i <= n; i++) {
+            p = q;
+            q = r;
+            r = p+q;
+        }
+        return r;
+    }
+}
+
+状态转移方程:
+f(x) = f(x-1) + f(x-2)
+因为一次只能前进1级或者2级台阶，所以第x级的台阶一定由前两级的方案总数相加而来
+
+从第0级爬到第0级我们可以看作只有一种方案，即f(0)=1；从第0级到第1级也只有一种方案，即爬一级，f(1)=1。这两个作为边界条件就可以继续向后推导出第n级的正确结果。
+我们可以用「滚动数组思想」把空间复杂度优化成 O(1)
