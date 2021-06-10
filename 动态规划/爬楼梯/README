@@ -20,3 +20,14 @@ f(x) = f(x-1) + f(x-2)
 
 从第0级爬到第0级我们可以看作只有一种方案，即f(0)=1；从第0级到第1级也只有一种方案，即爬一级，f(1)=1。这两个作为边界条件就可以继续向后推导出第n级的正确结果。
 我们可以用「滚动数组思想」把空间复杂度优化成 O(1)
+
+
+518. 零钱兑换II
+https://leetcode-cn.com/problems/coin-change-2/
+dp[x] 表示金额之和等于x的硬币组合数，目标是求 dp[amount]。
+第一层for循环for(int coin : coins)
+第二层for循环for(int i = coin; i <= amount; i++)
+先按照coin遍历，可以保证不会重复使用之前已经遍历过的coin
+
+爬楼梯问题和零钱兑换问题的区别:
+https://leetcode-cn.com/problems/coin-change-2/solution/ling-qian-dui-huan-iihe-pa-lou-ti-wen-ti-dao-di-yo/
