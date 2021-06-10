@@ -24,6 +24,7 @@ f(x) = f(x-1) + f(x-2)
 
 把这道题泛化，如果给定的不只是1，2 而是1，2，5
 
+```Java
 class Solution {
 public:
     int climbStairs(int n) {
@@ -42,6 +43,7 @@ public:
 
     }
 };
+```
 
 ## 518. 零钱兑换II
 https://leetcode-cn.com/problems/coin-change-2/
