@@ -21,6 +21,26 @@ f(x) = f(x-1) + f(x-2)
 从第0级爬到第0级我们可以看作只有一种方案，即f(0)=1；从第0级到第1级也只有一种方案，即爬一级，f(1)=1。这两个作为边界条件就可以继续向后推导出第n级的正确结果。
 我们可以用「滚动数组思想」把空间复杂度优化成 O(1)
 
+把这道题泛化，如果给定的不只是1，2 而是1，2，5
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        int DP[n+1];
+        memset(DP, 0, sizeof(DP));
+        DP[0] = 1;
+        int steps[2] = {1,2};
+        for (int i = 1; i <= n; i++){
+            for (int j = 0; j < 2; j++){ // 这里如果是1，2，5就是j<3了
+                int step = steps[j];
+                if ( i < step ) continue;// 台阶少于跨越的步数
+                DP[i] = DP[i] + DP[i-step];
+            }
+        }
+        return DP[n];
+
+    }
+};
 
 518. 零钱兑换II
 https://leetcode-cn.com/problems/coin-change-2/
@@ -35,6 +55,7 @@ https://leetcode-cn.com/problems/coin-change-2/solution/ling-qian-dui-huan-iihe-
 这两道题都属于一维dp问题：
 爬楼梯属于排列问题，221 & 212是两种
 硬币这个属于组合问题，221&212为一种
+所以说注意这两道题的for循环嵌套顺序，排列问题和组合问题的嵌套顺序是不一样的
 
 总结，二维dp的组合数问题和排列数问题 都可以交换嵌套的循环，因为子问题不会变化； 
 一维的dp组合数问题和排列数问题 不可以交换嵌套的循环，因为会改变子问题； 
