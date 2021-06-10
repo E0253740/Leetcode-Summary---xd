@@ -1,4 +1,4 @@
-70. 爬楼梯
+## 70. 爬楼梯
 https://leetcode-cn.com/problems/climbing-stairs/
 
 // Java
@@ -42,7 +42,7 @@ public:
     }
 };
 
-518. 零钱兑换II
+## 518. 零钱兑换II
 https://leetcode-cn.com/problems/coin-change-2/
 dp[x] 表示金额之和等于x的硬币组合数，目标是求 dp[amount]。
 第一层for循环for(int coin : coins)
