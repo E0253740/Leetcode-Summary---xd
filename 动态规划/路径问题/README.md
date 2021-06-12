@@ -12,6 +12,11 @@
 [题目链接](https://leetcode-cn.com/problems/minimum-path-sum/)<br/>
 同样，这个格子可能是由上面的或者左边的而来，那么就选择上面或者左边较小的一个+格子本身的分量 = 这个格子的最小路径和<br/>
 状态转移方程：**dp[i][j] = Math.min(dp[i-1][j],dp[i][j-1]) + grid[i][j];(一般情况)**<br/>
-[参考宫水三叶的总结](https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247485106&idx=1&sn=39adbde98707dc02a99e71f58cad5e7c&chksm=fd9cadadcaeb24bb2295d170f3de8dca0ce8e5acadccafbee82139dfe38ce1984435cd7a50ed&scene=178&cur_album_id=1773144264147812354#rd)
+[参考宫水三叶的总结](https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247485106&idx=1&sn=39adbde98707dc02a99e71f58cad5e7c&chksm=fd9cadadcaeb24bb2295d170f3de8dca0ce8e5acadccafbee82139dfe38ce1984435cd7a50ed&scene=178&cur_album_id=1773144264147812354#rd)<br/>
+注意这个问题三叶的拓展，如何记录最小路径，以及怎么用一维数组记录信息<br/>
+```Java
+int[] g = new int[m*n];
+int[] path = new int[m+n];
+```
 
 
