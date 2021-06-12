@@ -35,7 +35,7 @@ int[] path = new int[m+n];
 6 5 7
 4 1 8 3
 ```
-这里开始要有意识地学会优化了，先是二维数组O(n^2)解法:
+这里开始要有意识地学会**时间与空间优化了**，先是二维数组O(n^2)解法:
 ```Java
 // 二维数组解法
 class Solution {
@@ -64,6 +64,19 @@ class Solution {
     }
 }
 ```
-然后是优化成一维数组的解法: **核心思想：每一行的状态只与上一行有关**
+然后是优化成一维数组的解法: **核心思想：每一行的状态只与上一行有关** - 很厉害的一个写法，***从下往上看***，这样避免了前一次的更新会影响下一次的数据处理
 ```Java
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int level = triangle.size();
+        int[] dp = new int[triangle.get(level - 1).size() + 1];
 
+        for (int i = level - 1; i >= 0; --i) {
+            List<Integer> cur = triangle.get(i);
+            for (int j = 0; j < cur.size(); ++j) 
+                dp[j] = cur.get(j) + Math.min(dp[j], dp[j + 1]);
+        }
+        return dp[0];
+    }
+}
+```
