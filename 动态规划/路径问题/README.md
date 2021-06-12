@@ -19,4 +19,51 @@ int[] g = new int[m*n];
 int[] path = new int[m+n];
 ```
 
+## 120. 三角形最小路径和
+这道题一开始我没想出来，后来看三叶的题解才想明白<br/>
+**重要的是把这个三角形转化为数组，然后弄清楚边界条件：每一行的最左边和最右边是边界条件，要特殊处理**<br/>
+```Java
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+```
+我们把这个三角形抽象为以下数组:
+```Java
+2
+3 4
+6 5 7
+4 1 8 3
+```
+这里开始要有意识地学会优化了，先是二维数组O(n^2)解法:
+```Java
+// 二维数组解法
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int[][] dp = new int[n][n];
+        dp[0][0] = triangle.get(0).get(0);
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j <= i; j++) {
+                if(j==0) {
+                    dp[i][j] = triangle.get(i).get(j) + dp[i-1][j];
+                }
+                else if(j==i) {
+                    dp[i][j] = triangle.get(i).get(j) + dp[i-1][j-1];
+                }
+                else {
+                    dp[i][j] = triangle.get(i).get(j) + Math.min(dp[i-1][j-1],dp[i-1][j]);
+                }
+            }
+        }
+        int res = Integer.MAX_VALUE;
+        for(int num:dp[n-1]) {
+            res = Math.min(res,num);
+        }
+        return res;
+    }
+}
+```
+然后是优化成一维数组的解法: **核心思想：每一行的状态只与上一行有关**
+```Java
 
