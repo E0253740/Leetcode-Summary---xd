@@ -106,3 +106,39 @@ class Solution {
     }
 }
 ```
+## 1289. 下降路径最小和II -- 第一道困难题
+**重点掌握这道题的思想，优化空间，时间**
+因为这道题多了一个限制条件，不能选同一列的，但是其他的位置可以随便选，这样我们就需要每次都枚举出不属于同一列的最小值，时间复杂度为O(n^3)<br/>
+优化方法是：每次都记录出上一行的最小值和次小值，以及记录他们的index,这是核心优化思想<br/>
+事实上 我们可以优化为3个变量<br/>
+* first_sum 表示这一行的最小值；
+* first_pos 表示这一行最小值对应的 jmin；
+* second_sum 表示这一行的次小值。
+```Java
+class Solution {
+    public int minFallingPathSum(int[][] arr) {
+        int n = arr.length;
+        int first_sum = 0, second_sum = 0, first_pos = -1;
+        for(int i = 0; i < n; i++) {
+            int fs = Integer.MAX_VALUE, fp = -1, ss = Integer.MAX_VALUE;
+            for(int j = 0; j < n; j++) {
+                int cur_sum = (first_pos != j ? first_sum : second_sum) + arr[i][j];
+                if(cur_sum < fs) {
+                    ss = fs;
+                    fs = cur_sum;
+                    fp = j;
+                }
+                else if(cur_sum < ss) {
+                    ss = cur_sum;
+                }
+            }
+            
+            first_sum = fs;
+            first_pos = fp;
+            second_sum = ss;
+        }
+        return first_sum;
+    }
+}
+```
+
