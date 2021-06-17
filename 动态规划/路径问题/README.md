@@ -141,4 +141,11 @@ class Solution {
     }
 }
 ```
-
+## 576. 出界的路径数
+这道题反过来思考，dp[i][j][k]:表示从(i,j)出发第k步出界的路径总数，**等价于从外界出发第k步走到(i,j)的路径总数**<br/>
+初始化为这个：<br/>
+[进入原题解](https://leetcode-cn.com/problems/out-of-boundary-paths/solution/zhuang-tai-ji-du-shi-zhuang-tai-ji-by-christmas_wa/)
+![](https://pic.leetcode-cn.com/68b8de2886020e1562a99cfc0581e9873ab79ed7e82a1f7fbd2950ea8b512972-%E5%B9%BB%E7%81%AF%E7%89%871.PNG)
+![](https://pic.leetcode-cn.com/09abfdd317f5a26c7044b4a22acea19afe79bd2542e391edd4e6ccccd0548b6c-%E5%B9%BB%E7%81%AF%E7%89%872.PNG)
+**k=0时，所有外界边框为1；k=1时，所有外界边框为0**<br/>
+这道题进一步优化是：[i][j]可以降成一维，index = i*N+j;<br/>
