@@ -39,6 +39,7 @@ class Solution {
 ```
 可以看到，我这里使用了全局变量以及visited[][]数组来防止重复计数，但这样就会比较慢 <br/>
 下面是官方题解，官方题解在每次判断完边界条件后，把当前格子设置为'0', 这样就可以避免使用visited[][]数组了.同样，官方题解没有使用全局变量，每次dfs重新得出数组长度 <br/>
+同样遍历过的也可以改成2，只要不是1就行 <br/>
 ```Java
 class Solution {
     void dfs(char[][] grid, int r, int c) {
@@ -77,3 +78,34 @@ class Solution {
     }
 }
 ```
+## 695. 岛屿的最大面积
+这道题不一样的地方在于dfs返回类型为int而不是void, 那么递归的写法为return 1 + dfs(grid, r - 1, c) + dfs(grid, r + 1, c) + dfs(grid, r, c - 1) + dfs(grid, r, c + 1); <br/>
+```Java
+class Solution {
+    public int maxAreaOfIsland(int[][] grid) {
+        int nr = grid.length;
+        int nc = grid[0].length;
+        int size = 0;
+        for (int r = 0; r < nr; ++r) {
+            for (int c = 0; c < nc; ++c) {
+                if (grid[r][c] == 1) { // 首先判断当前格子不为'0',才执行dfs
+                    int area = dfs(grid, r, c);
+                    size = Math.max(size,area);
+                }
+            }
+        }
+
+        return size;
+    }
+    int dfs(int[][] grid, int r, int c) {
+        int nr = grid.length;
+        int nc = grid[0].length;
+        if (r < 0 || c < 0 || r >= nr || c >= nc || grid[r][c] != 1) {
+            return 0;
+        }
+        grid[r][c] = 2; // 在每次判断完边界条件后，把当前格子设置为2, 这样就可以避免使用visited[][]数组了
+        return 1 +dfs(grid, r - 1, c) + dfs(grid, r + 1, c) + dfs(grid, r, c - 1) + dfs(grid, r, c + 1);
+    }
+}
+```
+##
