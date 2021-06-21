@@ -110,7 +110,7 @@ class Solution {
 ```
 ## 463.岛屿的周长
 这道题的返回值也是int, 要弄懂这张图:<br/>
-![](https://pic.leetcode-cn.com/562d8d63af78af0e3ef2105f065cc96465eec4bf1e8a28b668d6f383f0a1518b.jpg)
+![](https://pic.leetcode-cn.com/66d817362c1037ebe7705aacfbc6546e321c2b6a2e4fec96791f47604f546638.jpg)
 旁边是边界，海洋都会给周长带来贡献，但是我们要区分它们的种类；<br/>
 ```Java
 class Solution {
