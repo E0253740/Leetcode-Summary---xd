@@ -39,7 +39,7 @@ class Solution {
 ```
 可以看到，我这里使用了全局变量以及visited[][]数组来防止重复计数，但这样就会比较慢 <br/>
 下面是官方题解，官方题解在每次判断完边界条件后，把当前格子设置为'0', 这样就可以避免使用visited[][]数组了.同样，官方题解没有使用全局变量，每次dfs重新得出数组长度 <br/>
-同样遍历过的也可以改成2，只要不是1就行 <br/>
+但是这样可能会有问题，会混淆海洋和已遍历的陆地，**所以遍历过的最好改成2** <br/>
 ```Java
 class Solution {
     void dfs(char[][] grid, int r, int c) {
@@ -109,4 +109,35 @@ class Solution {
 }
 ```
 ## 463.岛屿的周长
-
+这道题的返回值也是int, 要弄懂这张图:<br/>
+![](https://pic.leetcode-cn.com/562d8d63af78af0e3ef2105f065cc96465eec4bf1e8a28b668d6f383f0a1518b.jpg)
+旁边是边界，海洋都会给周长带来贡献，但是我们要区分它们的种类；<br/>
+```Java
+class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int res = 0;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j]==1) {
+                    res += dfs(grid,i,j);
+                } 
+            }
+        }
+        return res;
+    }
+    int dfs (int[][] grid, int i, int j) {
+        if(!inArea(grid,i,j)) return 1; // 函数因为「坐标 (r, c) 超出网格范围」返回，对应一条黄色的边
+        if(grid[i][j]==0) return 1; // 函数因为「当前格子是海洋格子」返回，对应一条蓝色的边
+        if(grid[i][j]!=1) return 0; // 函数因为「当前格子是已遍历的陆地格子」返回，和周长没关系
+        grid[i][j] = 2;
+        return dfs(grid,i-1,j) + dfs(grid,i+1,j) + dfs(grid,i,j-1) + dfs(grid,i,j+1);
+    }
+    // 判断坐标 (r, c) 是否在网格中
+    boolean inArea(int[][] grid, int r, int c) {
+        return 0 <= r && r < grid.length 
+        && 0 <= c && c < grid[0].length;
+    }
+}
+```
