@@ -141,3 +141,72 @@ class Solution {
     }
 }
 ```
+## 827. 最大人工岛屿
+![](https://pic.leetcode-cn.com/56ec808215d4ff3014476ef22297522b3731602266f9a069a82daf41001f904c.jpg)
+这道题实际上是对网格做了两次遍历：第一遍 DFS 遍历陆地格子，计算每个岛屿的面积并标记岛屿，同时得出最大岛屿面积，如果特殊情况，加的这个格子无法连接两个岛屿，那么结果就是最大面积加一；<br/>
+**我的处理是给岛屿标记从2开始；**<br/>
+第二遍遍历找海洋格子，观察每个海洋格子相邻的陆地格子。这里我用一个array来记录上下左右四个格子是否是岛屿，以及岛屿编号
+然后遍历这个array处理
+```Java
+class Solution {
+    public int largestIsland(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int num = 2;
+        int maxsize = 0;
+        Map<Integer, Integer> record = new HashMap<>();
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j]==1) {
+                    int size = dfs1(grid,i,j,num);
+                    maxsize = Math.max(size,maxsize);
+                    record.put(num,size);
+                    num++;
+                }
+            }
+        }
+        int res = maxsize+1;
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j]==0) {
+                    int[] arr = new int[4];
+                    if(i>0 && i<n-1 && j>0 && j<m-1){
+                        arr[0] = grid[i-1][j];
+                        arr[1] = grid[i+1][j];
+                        arr[2] = grid[i][j-1];
+                        arr[3] = grid[i][j+1];
+                    }
+                    else {
+                        if(i!=0) arr[0] = grid[i-1][j];
+                        if(i!=n-1) arr[1] = grid[i+1][j];
+                        if(j!=0) arr[2] = grid[i][j-1];
+                        if(j!=m-1) arr[3] = grid[i][j+1];
+                    }
+                    Arrays.sort(arr);
+                    int z = 3, cur = 1;
+                    Set<Integer> set = new HashSet<>();
+                    while(z>=0 && arr[z]!=0) {
+                        if(set.contains(arr[z])==false) {
+                            cur += (record.get(arr[z]));
+                            set.add(arr[z]);
+                        }
+                        z--;
+                    }
+                    res = Math.max(res, cur);
+                }
+            }
+        }
+        return res > n*m ? res - 1: res;
+        
+    }
+    int dfs1(int[][]grid, int i, int j, int num) {
+        if(!inArea(grid,i,j)) return 0;
+        if(grid[i][j]!=1) return 0;
+        grid[i][j] = num;
+        return 1 + dfs1(grid,i-1,j,num) + dfs1(grid,i+1,j,num) + dfs1(grid,i,j-1,num) + dfs1(grid,i,j+1,num);
+    }
+    boolean inArea(int[][] grid,int r,int c) {
+        return r >= 0 && r < grid.length && c >= 0 && c < grid[0].length;
+    }
+}
+```
