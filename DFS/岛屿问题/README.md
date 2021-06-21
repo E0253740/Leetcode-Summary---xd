@@ -169,14 +169,15 @@ class Solution {
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 if(grid[i][j]==0) {
-                    int[] arr = new int[4];
-                    if(i>0 && i<n-1 && j>0 && j<m-1){
+                    int[] arr = new int[4]; // arr = {上，下，左，右}
+                    // 如果这个方向的格子为海洋，或者这个方向没有格子，已经超出边界了，array里这个方向值为0
+                    if(i>0 && i<n-1 && j>0 && j<m-1){ // 证明这个海四周都有格子
                         arr[0] = grid[i-1][j];
                         arr[1] = grid[i+1][j];
                         arr[2] = grid[i][j-1];
                         arr[3] = grid[i][j+1];
                     }
-                    else {
+                    else { //这个海至少有一边没有格子
                         if(i!=0) arr[0] = grid[i-1][j];
                         if(i!=n-1) arr[1] = grid[i+1][j];
                         if(j!=0) arr[2] = grid[i][j-1];
