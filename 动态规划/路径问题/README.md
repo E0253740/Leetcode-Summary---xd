@@ -149,3 +149,11 @@ class Solution {
 ![](https://pic.leetcode-cn.com/09abfdd317f5a26c7044b4a22acea19afe79bd2542e391edd4e6ccccd0548b6c-%E5%B9%BB%E7%81%AF%E7%89%872.PNG)
 **k=0时，所有外界边框为1；k=1时，所有外界边框为0**<br/>
 这道题进一步优化是：[i][j]可以降成一维，index = i*N+j;<br/>
+
+## 1575. 统计所有可行路径
+### 记忆化搜索版本
+重点，参考[宫水三叶的题解](https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247485297&idx=1&sn=5ee4ce31c42d368af0653f60aa263c82&chksm=fd9cac6ecaeb25787e6da90423c5467e1679da0a8aaf1a3445475199a8f148d8629e851fea57&scene=178&cur_album_id=1773144264147812354#rd)
+### 从记忆化搜索得出动态规划版本
+参考[宫水三叶的题解](https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247485319&idx=1&sn=95a3dc9c97ca57185de792ca70924afe&chksm=fd9cac98caeb258ebea466f59378670a90af1cb3015ae70922e1d04ac711a5b8d8d853ac5e7d&cur_album_id=1773144264147812354&scene=190#rd)
+**从这道题，我们引入了一个新的解法，之前的解法都是去靠猜，得出状态转移定义和状态转移方程**<br/>
+**从这里开始，是先用的记忆化搜索，然后看记忆化搜索有哪些变量，再从这些升级而成动态规划**<br/>
