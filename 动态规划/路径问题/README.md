@@ -150,7 +150,7 @@ class Solution {
 **k=0时，所有外界边框为1；k=1时，所有外界边框为0**<br/>
 这道题进一步优化是：[i][j]可以降成一维，index = i*N+j;<br/>
 
-## 1575. 统计所有可行路径
+## 1575. 统计所有可行路径 - 重点思考，怎么用DFS记忆化搜索，以及怎么从记忆化搜索得到动态规划的思路
 ### 记忆化搜索版本
 重点，参考[宫水三叶的题解](https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247485297&idx=1&sn=5ee4ce31c42d368af0653f60aa263c82&chksm=fd9cac6ecaeb25787e6da90423c5467e1679da0a8aaf1a3445475199a8f148d8629e851fea57&scene=178&cur_album_id=1773144264147812354#rd)
 ### 从记忆化搜索得出动态规划版本
