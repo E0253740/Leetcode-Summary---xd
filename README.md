@@ -1,5 +1,6 @@
 # Java一些常见操作的写法
 ## 数组
+1. 克隆数组: int[] array = nums.clone();
 ## 字符串String
 1. 把char[] 转化为String: 已知给定了一个char[] a; String b = new String(a);
 ## HashMap
