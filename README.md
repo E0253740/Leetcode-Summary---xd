@@ -13,4 +13,9 @@ Map<Integer, Integer> map = new HashMap<>();
 2. StringBuilder清空 sb.delete(0,sb.length());
 ## 其他一些常见技巧
 1. 向上取整: (n-1)/2+1;
-2. 
+2. PriorityQueue自定义排序方法
+```Java
+PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) -> 
+  a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]
+);
+```
