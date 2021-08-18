@@ -1,6 +1,15 @@
 # Java一些常见操作的写法
 ## 数组
 1. 克隆数组: int[] array = nums.clone();
+2. [ [1,2], [2,3], [3,4], [1,3] ] <br/>
+给这个数组排序:
+```Java
+Arrays.sort(intervals, new Comparator<int[]>(){
+    public int compare(int[] line1, int[] line2){
+        return line1[1] - line2[1];
+    }
+});
+```
 ## 字符串String
 1. 把char[] 转化为String: 已知给定了一个char[] a; String b = new String(a);
 ## HashMap
