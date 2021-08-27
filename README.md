@@ -28,3 +28,12 @@ PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) ->
   a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]
 );
 ```
+## 优先队列
+大根堆: 
+```Java
+PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->b-a);
+```
+小根堆: 
+```Java
+PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->a-b);
+```
