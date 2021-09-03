@@ -15,8 +15,20 @@ Arrays.sort(intervals, new Comparator<int[]>(){
 ## HashMap
 Map<Integer, Integer> map = new HashMap<>();
 1. 提取HashMap所有的值，转化为一个数组：__Integer[] arr = map.values.toArray(new Integer[map.size()]);__ 注意这里必须用Integer<br/>
-
-
+2. 遍历HashMap
+```Java
+for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
+    int num = entry.getKey(), count = entry.getValue();
+    if (queue.size() == k) {
+        if (queue.peek()[1] < count) {
+            queue.poll();
+            queue.offer(new int[]{num, count});
+        }
+    } else {
+        queue.offer(new int[]{num, count});
+    }
+}
+```
 ## StringBuilder
 1. StringBuilder append int类型：sb.append(""+5);
 2. StringBuilder清空 sb.delete(0,sb.length());
@@ -37,3 +49,4 @@ PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->b-a);
 ```Java
 PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->a-b);
 ```
+
