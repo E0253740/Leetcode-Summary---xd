@@ -14,7 +14,16 @@ Arrays.sort(intervals, new Comparator<int[]>(){
 1. 把char[] 转化为String: 已知给定了一个char[] a; String b = new String(a);
 2. 相同长度字符串比较: str1.compareTo(str2);
 
-
+## HashSet
+1. 遍历的两种方法：<br/>
+   1.1 for each<br/>
+   2.1 迭代器<br/>
+```Java
+Iterator it = set.iterator();
+while(it.hasNext()){
+    int num = it.next();
+}
+```    
 ## HashMap
 Map<Integer, Integer> map = new HashMap<>();
 1. 提取HashMap所有的值，转化为一个数组：__Integer[] arr = map.values.toArray(new Integer[map.size()]);__ 注意这里必须用Integer<br/>
