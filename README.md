@@ -19,7 +19,7 @@ Arrays.sort(intervals, new Comparator<int[]>(){
    1.1 for each<br/>
    2.1 迭代器<br/>
 ```Java
-Iterator it = set.iterator();
+Iterator<Integer> it = set.iterator();
 while(it.hasNext()){
     int num = it.next();
 }
