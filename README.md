@@ -62,3 +62,9 @@ PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->b-a);
 PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->a-b);
 ```
 
+## Long
+long类型强制转化为int可能会丢失精度，一种比较好的解决办法:
+```Java
+long ll = 300000;  
+int ii= new Long(ll).intValue(); 
+```
